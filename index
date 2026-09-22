@@ -1,0 +1,996 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>La Svolta del Vento: Sfida tra i Flutti! (Vero - Falso • 4 Sezioni)</title>
+  <style>
+    /* RESET & THEME VARIABLES: AMERICA'S CUP FROSTED GLASS THEME */
+    :root {
+      --ocean-deep: #001D3D;
+      --ocean-blue: #002B5B;
+      --ocean-mid: #004C92;
+      --race-red: #FF0000;
+      --sun-gold: #FFD700;
+      --pure-white: #ffffff;
+      --foam-white: #f8fafc;
+      --glass-bg: rgba(255, 255, 255, 0.1);
+      --glass-border: rgba(255, 255, 255, 0.25);
+      --success-green: #10b981;
+      --fail-rose: #f43f5e;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+      user-select: none;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      background: linear-gradient(135deg, #002B5B 0%, #004C92 50%, #001D3D 100%);
+      color: var(--pure-white);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    /* HEADER */
+    header {
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+      padding: 14px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .brand-icon {
+      width: 44px;
+      height: 44px;
+      background: linear-gradient(135deg, var(--race-red), var(--sun-gold));
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      box-shadow: 0 4px 15px rgba(255, 0, 0, 0.35);
+    }
+
+    .brand-text h1 {
+      font-size: 1.15rem;
+      font-weight: 900;
+      line-height: 1.2;
+    }
+
+    .brand-text h1 span {
+      color: var(--sun-gold);
+    }
+
+    .badge-cup {
+      background: var(--race-red);
+      color: white;
+      font-size: 0.65rem;
+      font-weight: 900;
+      padding: 2px 8px;
+      border-radius: 999px;
+      letter-spacing: 0.5px;
+      display: inline-block;
+      margin-bottom: 2px;
+    }
+
+    .header-controls {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .btn-pill {
+      background: rgba(255, 255, 255, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      color: white;
+      padding: 7px 14px;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s;
+    }
+
+    .btn-pill:hover {
+      background: rgba(255, 255, 255, 0.22);
+    }
+
+    /* MAIN CONTAINER */
+    main {
+      flex: 1;
+      width: 100%;
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 20px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      justify-content: center;
+      z-index: 10;
+    }
+
+    /* FROSTED GLASS CARDS */
+    .glass-panel {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border: 1px solid rgba(255, 255, 255, 0.28);
+      border-radius: 32px;
+      padding: 28px;
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.35);
+      text-align: center;
+    }
+
+    /* RACING TRACK */
+    .regatta-track {
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 28px;
+      padding: 16px 20px;
+      margin-bottom: 15px;
+    }
+
+    .track-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+
+    .speed-badge {
+      background: var(--race-red);
+      color: white;
+      padding: 6px 14px;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      font-weight: 900;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      box-shadow: 0 4px 15px rgba(255, 0, 0, 0.4);
+    }
+
+    .track-water {
+      height: 90px;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      border-radius: 20px;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+    }
+
+    .track-progress {
+      position: absolute;
+      left: 0;
+      top: 0;
+      height: 100%;
+      background: linear-gradient(90deg, rgba(255,0,0,0.3), rgba(255,215,0,0.3));
+      border-radius: 20px;
+      transition: width 0.8s ease-out;
+    }
+
+    .boat-marker {
+      position: absolute;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 38px;
+      transition: left 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+      z-index: 10;
+      filter: drop-shadow(0 4px 12px rgba(0,0,0,0.5));
+    }
+
+    .finish-gate {
+      position: absolute;
+      right: 14px;
+      top: 10px;
+      bottom: 10px;
+      width: 4px;
+      background: repeating-linear-gradient(0deg, #fff, #fff 6px, #001D3D 6px, #001D3D 12px);
+      border-radius: 2px;
+    }
+
+    /* SECTION CARDS SELECTOR */
+    .section-cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 12px;
+      margin: 18px 0;
+      text-align: left;
+    }
+
+    .sec-card-btn {
+      background: rgba(255, 255, 255, 0.08);
+      border: 2px solid rgba(255, 255, 255, 0.2);
+      border-radius: 20px;
+      padding: 14px;
+      color: white;
+      cursor: pointer;
+      transition: all 0.2s;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .sec-card-btn:hover {
+      background: rgba(255, 255, 255, 0.15);
+      border-color: rgba(255, 255, 255, 0.4);
+    }
+
+    .sec-card-btn.selected {
+      background: rgba(255, 255, 255, 0.25);
+      border-color: var(--sun-gold);
+      box-shadow: 0 0 20px rgba(255, 215, 0, 0.35);
+    }
+
+    .sec-card-title {
+      font-weight: 900;
+      font-size: 0.95rem;
+    }
+
+    .sec-card-badge {
+      font-size: 0.7rem;
+      font-weight: 800;
+      color: var(--sun-gold);
+    }
+
+    .sec-card-desc {
+      font-size: 0.75rem;
+      color: rgba(255, 255, 255, 0.8);
+      line-height: 1.3;
+    }
+
+    /* VERO / FALSO BUTTONS */
+    .vf-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-top: 18px;
+    }
+
+    @media (max-width: 600px) {
+      .vf-container {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .vf-btn {
+      background: rgba(255, 255, 255, 0.08);
+      border: 2px solid rgba(255, 255, 255, 0.25);
+      border-radius: 24px;
+      padding: 20px;
+      color: white;
+      font-size: 1.8rem;
+      font-weight: 900;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: all 0.2s;
+      backdrop-filter: blur(16px);
+    }
+
+    .vf-btn:hover:not(:disabled) {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    }
+
+    .vf-btn:active:not(:disabled) {
+      transform: scale(0.98);
+    }
+
+    .vf-btn-vero {
+      border-color: rgba(16, 185, 129, 0.5);
+      background: rgba(16, 185, 129, 0.15);
+    }
+
+    .vf-btn-vero:hover:not(:disabled) {
+      background: rgba(16, 185, 129, 0.3);
+    }
+
+    .vf-btn-falso {
+      border-color: rgba(244, 63, 94, 0.5);
+      background: rgba(244, 63, 94, 0.15);
+    }
+
+    .vf-btn-falso:hover:not(:disabled) {
+      background: rgba(244, 63, 94, 0.3);
+    }
+
+    .vf-btn.correct {
+      background: rgba(16, 185, 129, 0.5) !important;
+      border-color: #34d399 !important;
+      box-shadow: 0 0 25px rgba(52, 211, 153, 0.6) !important;
+    }
+
+    .vf-btn.wrong {
+      background: rgba(244, 63, 94, 0.5) !important;
+      border-color: #f43f5e !important;
+      box-shadow: 0 0 25px rgba(244, 63, 94, 0.6) !important;
+    }
+
+    /* FEEDBACK BOX */
+    .feedback-box {
+      margin-top: 20px;
+      border-radius: 24px;
+      padding: 22px;
+      backdrop-filter: blur(20px);
+      border: 1px solid;
+      text-align: left;
+      animation: fadeIn 0.3s ease;
+    }
+
+    .feedback-correct {
+      background: rgba(6, 78, 59, 0.7);
+      border-color: #34d399;
+      color: #ecfdf5;
+    }
+
+    .feedback-wrong {
+      background: rgba(136, 19, 55, 0.7);
+      border-color: #fb7185;
+      color: #fff1f2;
+    }
+
+    .fact-box {
+      margin-top: 14px;
+      padding-top: 12px;
+      border-top: 1px solid rgba(255, 255, 255, 0.2);
+      font-size: 0.85rem;
+      color: var(--sun-gold);
+    }
+
+    /* BUTTONS */
+    .primary-btn {
+      background: linear-gradient(90deg, var(--race-red), var(--sun-gold));
+      color: white;
+      font-size: 1.25rem;
+      font-weight: 900;
+      padding: 16px 36px;
+      border-radius: 18px;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      cursor: pointer;
+      box-shadow: 0 10px 30px rgba(255, 0, 0, 0.4);
+      transition: all 0.2s;
+      margin-top: 16px;
+    }
+
+    .primary-btn:hover {
+      filter: brightness(1.1);
+      transform: scale(1.02);
+    }
+
+    /* MODAL */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.7);
+      backdrop-filter: blur(10px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+      z-index: 100;
+    }
+
+    .modal-content {
+      background: rgba(0, 43, 91, 0.95);
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      border-radius: 32px;
+      padding: 28px;
+      max-width: 650px;
+      width: 100%;
+      max-height: 90vh;
+      overflow-y: auto;
+      text-align: left;
+    }
+
+    .rule-item {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      border-radius: 18px;
+      padding: 14px 16px;
+      margin-bottom: 10px;
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+    }
+
+    .rule-num {
+      width: 38px;
+      height: 38px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, var(--race-red), var(--sun-gold));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 900;
+      font-size: 1.1rem;
+      color: white;
+      shrink: 0;
+    }
+
+    /* FOOTER */
+    footer {
+      background: rgba(255, 255, 255, 0.06);
+      border-top: 1px solid rgba(255, 255, 255, 0.15);
+      padding: 12px 20px;
+      font-size: 0.75rem;
+      text-align: center;
+      color: rgba(255, 255, 255, 0.75);
+    }
+
+    .screen {
+      display: none;
+    }
+
+    .screen.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <div class="brand">
+      <div class="brand-icon">⛵</div>
+      <div class="brand-text">
+        <span class="badge-cup">Didattica Vela Primaria • 4 Sezioni</span>
+        <h1>La Svolta del <span>Vento</span></h1>
+      </div>
+    </div>
+    <div class="header-controls">
+      <button class="btn-pill" onclick="openRulesModal()">📜 Regole</button>
+      <button class="btn-pill" id="soundBtn" onclick="toggleSound()">
+        <span id="soundIcon">🔊</span> Audio
+      </button>
+      <button class="btn-pill" onclick="resetGame()">🔄 Reset</button>
+    </div>
+  </header>
+
+  <!-- MAIN -->
+  <main>
+    <!-- RACE COURSE TRACK (visible during quiz) -->
+    <div id="regattaTrack" class="regatta-track" style="display: none;">
+      <div class="track-top">
+        <span style="font-weight: 900; font-size: 0.85rem; color: var(--sun-gold);" id="trackSectionTitle">
+          CAMPO DI REGATA
+        </span>
+        <div class="speed-badge">
+          <span>⚡</span> <span id="speedDisplay">0</span> NODI
+        </div>
+      </div>
+      <div class="track-water">
+        <div id="trackProgress" class="track-progress" style="width: 5%;"></div>
+        <div id="boatMarker" class="boat-marker" style="left: 6%;">⛵</div>
+        <div class="finish-gate"></div>
+      </div>
+    </div>
+
+    <!-- START SCREEN -->
+    <div id="startScreen" class="glass-panel screen active">
+      <span style="background: var(--race-red); padding: 4px 14px; border-radius: 999px; font-size: 0.75rem; font-weight: 900; letter-spacing: 1px; display: inline-block; margin-bottom: 12px;">
+        EDIZIONE COMPLETA A 4 SEZIONI (2 DOMANDE CIASCUNA)
+      </span>
+      <h1 style="font-size: 2.3rem; font-weight: 900; text-transform: uppercase; margin-bottom: 8px;">
+        La Svolta del Vento
+      </h1>
+      <p style="font-size: 0.95rem; color: rgba(255,255,255,0.9); margin-bottom: 20px; line-height: 1.5;">
+        Sei pronto per la regata, giovane marinaio? Mettiti alla prova con le 4 sezioni tematiche: scopri l'America's Cup, il regolamento della gara coi modellini, gli elementi della barca e le differenze tra monochiglia, catamarano e zattera!
+      </p>
+
+      <div style="text-align: left; margin-bottom: 8px; font-weight: 900; font-size: 0.85rem; color: var(--sun-gold);">
+        SCEGLI IL PERCORSO DI REGATA:
+      </div>
+
+      <div class="section-cards-grid">
+        <div class="sec-card-btn selected" id="sec-all" onclick="selectSection('all')">
+          <div class="sec-card-title">🏆 Grande Regata Completa</div>
+          <div class="sec-card-badge">Tutte le 4 Tappe • 8 Domande</div>
+          <div class="sec-card-desc">L'avventura velica definitiva attraverso tutti gli argomenti!</div>
+        </div>
+
+        <div class="sec-card-btn" id="sec-americas_cup" onclick="selectSection('americas_cup')">
+          <div class="sec-card-title">🏁 1. America's Cup</div>
+          <div class="sec-card-badge">Tappa 1 • 2 Domande</div>
+          <div class="sec-card-desc">Barche AC75 che volano sui foil e assenza di motori a bordo.</div>
+        </div>
+
+        <div class="sec-card-btn" id="sec-regolamento" onclick="selectSection('regolamento')">
+          <div class="sec-card-title">📜 2. Regole Regata a Ventaglio</div>
+          <div class="sec-card-badge">Tappa 2 • 2 Domande</div>
+          <div class="sec-card-desc">Team fantastico e partenza ordinata al fischietto!</div>
+        </div>
+
+        <div class="sec-card-btn" id="sec-elementi_barca" onclick="selectSection('elementi_barca')">
+          <div class="sec-card-title">⚓ 3. Elementi della Barca</div>
+          <div class="sec-card-badge">Tappa 3 • 2 Domande</div>
+          <div class="sec-card-desc">Prua che fende le onde e albero maestro per le vele!</div>
+        </div>
+
+        <div class="sec-card-btn" id="sec-tipi_barche" onclick="selectSection('tipi_barche')">
+          <div class="sec-card-title">🛶 4. Tipi di Barche</div>
+          <div class="sec-card-badge">Tappa 4 • 2 Domande</div>
+          <div class="sec-card-desc">Differenze tra catamarano a due scafi e zattera!</div>
+        </div>
+      </div>
+
+      <div style="margin: 18px auto; max-width: 380px; text-align: left;">
+        <label style="display: block; font-size: 0.8rem; font-weight: 900; color: var(--sun-gold); margin-bottom: 6px;">
+          NOME DELLA TUA BARCA O TEAM:
+        </label>
+        <input
+          type="text"
+          id="boatNameInput"
+          placeholder="Es. Luna Rossa, Saetta del Vento..."
+          value="Luna Rossa"
+          style="width: 100%; background: rgba(255,255,255,0.12); border: 2px solid rgba(255,255,255,0.3); border-radius: 16px; padding: 12px 16px; color: white; font-size: 1rem; font-weight: 700; outline: none;"
+        >
+      </div>
+
+      <button class="primary-btn" onclick="startGame()">Prendi il Timone! 🚀</button>
+    </div>
+
+    <!-- QUESTION SCREEN -->
+    <div id="questionScreen" class="glass-panel screen">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; flex-wrap: gap;">
+        <span style="background: rgba(255,255,255,0.15); padding: 5px 12px; border-radius: 999px; font-size: 0.75rem; font-weight: 900; color: var(--sun-gold);" id="questionCounter">
+          Sfida 1 di 3
+        </span>
+        <span style="background: rgba(255,255,255,0.15); padding: 5px 12px; border-radius: 999px; font-size: 0.75rem; font-weight: 900;" id="sectionBadge">
+          Sezione
+        </span>
+        <button class="btn-pill" onclick="speakCurrentStatement()">🔊 Leggi</button>
+      </div>
+
+      <div style="font-size: 0.8rem; font-weight: 900; color: var(--sun-gold); text-transform: uppercase; margin-bottom: 8px;" id="questionTopic">
+        ENUNCIATO MARINARESCO
+      </div>
+
+      <h2 style="font-size: 1.35rem; font-weight: 800; line-height: 1.4; margin-bottom: 16px;" id="questionText">
+        "Enunciato..."
+      </h2>
+
+      <!-- VERO / FALSO -->
+      <div class="vf-container">
+        <button class="vf-btn vf-btn-vero" id="btnVero" onclick="selectAnswer(true)">
+          <span>👍 VERO</span>
+          <span style="font-size: 1rem; opacity: 0.8;">Sì, è così!</span>
+        </button>
+        <button class="vf-btn vf-btn-falso" id="btnFalso" onclick="selectAnswer(false)">
+          <span>👎 FALSO</span>
+          <span style="font-size: 1rem; opacity: 0.8;">No, birbonata!</span>
+        </button>
+      </div>
+
+      <!-- FEEDBACK -->
+      <div id="feedbackBox" class="feedback-box" style="display: none;">
+        <div id="feedbackTitle" style="font-size: 1.15rem; font-weight: 900; margin-bottom: 6px;"></div>
+        <div id="feedbackExplanation" style="font-size: 0.9rem; line-height: 1.4;"></div>
+        <div class="fact-box">
+          <strong>Curiosità del Capitano:</strong> <span id="feedbackFact"></span>
+        </div>
+        <div style="text-align: right; margin-top: 14px;">
+          <button class="primary-btn" style="margin-top:0; padding: 10px 24px; font-size: 1rem;" onclick="nextQuestion()">
+            Prossima Boa ❯
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- FINISH SCREEN / DIPLOMA -->
+    <div id="finishScreen" class="glass-panel screen">
+      <span style="background: var(--race-red); padding: 4px 14px; border-radius: 999px; font-size: 0.75rem; font-weight: 900; letter-spacing: 1px; display: inline-block; margin-bottom: 12px;">
+        REGATA CONCLUSA CON SUCCESSO!
+      </span>
+      <h2 style="font-size: 2rem; font-weight: 900; margin-bottom: 6px;" id="finishTitle">
+        Grande Timoniere dei Mari! 🏆
+      </h2>
+      <p style="font-size: 1.1rem; color: rgba(255,255,255,0.9); margin-bottom: 16px;">
+        Conferito al Team: <strong style="color: var(--sun-gold); text-decoration: underline;" id="diplomaBoat">Luna Rossa</strong>
+      </p>
+
+      <div style="background: rgba(255,255,255,0.1); border-radius: 24px; padding: 20px; max-width: 400px; margin: 0 auto 20px;">
+        <div style="font-size: 0.8rem; font-weight: 900; color: var(--sun-gold); text-transform: uppercase;">Punteggio Finale</div>
+        <div style="font-size: 3rem; font-weight: 900; color: var(--sun-gold); font-family: monospace;" id="finalSpeed">
+          50
+        </div>
+        <div style="font-weight: 900; font-size: 1.2rem;">NODI!</div>
+        <div style="font-size: 0.85rem; opacity: 0.85;" id="finalScoreRatio">3 su 3 risposte corrette</div>
+      </div>
+
+      <div style="display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;">
+        <button class="primary-btn" onclick="resetGame()">Nuova Regata 🔄</button>
+        <button class="btn-pill" style="padding: 12px 20px; font-size: 0.95rem;" onclick="window.print()">🖨️ Stampa Diploma</button>
+      </div>
+    </div>
+  </main>
+
+  <!-- RULES MODAL -->
+  <div id="rulesModal" class="modal-overlay" style="display: none;">
+    <div class="modal-content">
+      <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 14px;">
+        <div>
+          <span style="font-size: 0.75rem; font-weight: 900; color: var(--sun-gold);">LOCANDINA UFFICIALE</span>
+          <h2 style="font-size: 1.4rem; font-weight: 900;">Grande Regata a Ventaglio</h2>
+          <div style="font-size: 0.8rem; opacity: 0.8;">Le 5 Regole del Gioco con Modellini</div>
+        </div>
+        <button class="btn-pill" onclick="closeRulesModal()">✕</button>
+      </div>
+
+      <div class="rule-item">
+        <div class="rule-num">1</div>
+        <div>
+          <strong style="display: block; font-size: 0.9rem;">CREA IL TUO TEAM FANTASTICO!</strong>
+          <span style="font-size: 0.8rem; opacity: 0.9;">Forma una squadra di 3 o 5 amici, scegliete un nome buffo e disegnate un logo unico.</span>
+        </div>
+      </div>
+
+      <div class="rule-item">
+        <div class="rule-num">2</div>
+        <div>
+          <strong style="display: block; font-size: 0.9rem;">PRONTI, ATTENTI... FISCHIO!</strong>
+          <span style="font-size: 0.8rem; opacity: 0.9;">Si parte tutti insieme al segnale del fischietto, correndo dritti nel proprio canale d'acqua.</span>
+        </div>
+      </div>
+
+      <div class="rule-item">
+        <div class="rule-num">3</div>
+        <div>
+          <strong style="display: block; font-size: 0.9rem;">GIOCA LEALE COL VENTAGLIO!</strong>
+          <span style="font-size: 0.8rem; opacity: 0.9;">Usa il ventaglio per spingere solo la tua barca, senza disturbare gli avversari.</span>
+        </div>
+      </div>
+
+      <div class="rule-item">
+        <div class="rule-num">4</div>
+        <div>
+          <strong style="display: block; font-size: 0.9rem;">LA BARCA CADE? NIENTE PAURA!</strong>
+          <span style="font-size: 0.8rem; opacity: 0.9;">Se la barca si ribalta, rimettila subito in acqua nello stesso punto e continua la sfida.</span>
+        </div>
+      </div>
+
+      <div class="rule-item">
+        <div class="rule-num">5</div>
+        <div>
+          <strong style="display: block; font-size: 0.9rem;">I PIÙ VELOCI VANNO IN FINALE!</strong>
+          <span style="font-size: 0.8rem; opacity: 0.9;">Il cronometro decide tutto: i due team con i tempi migliori si sfideranno nell'ultima grande gara.</span>
+        </div>
+      </div>
+
+      <div style="text-align: right; margin-top: 14px;">
+        <button class="primary-btn" style="padding: 10px 24px; font-size: 0.95rem; margin: 0;" onclick="closeRulesModal()">
+          Ho capito, si salpa! ⛵
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    Laboratorio America's Cup & Modellini • Didattica Vela Primaria (3ª e 4ª Elementare)
+  </footer>
+
+  <!-- SCRIPT WITH EXACTLY 2 QUESTIONS PER SECTION (8 TOTAL) -->
+  <script>
+    const ALL_QUESTIONS = [
+      // SEZIONE 1: AMERICA'S CUP (2 DOMANDE)
+      {
+        sec: 'americas_cup',
+        secTitle: "America's Cup",
+        statement: "Le velocissime barche AC75 dell'America's Cup 'volano' sopra l'acqua grazie ai FOIL, speciali ali sottomarine che sollevano lo scafo a quasi 100 km/h!",
+        isTrue: true,
+        explanation: "Proprio così! Quando la barca prende velocità, i foil creano portanza nell'acqua come le ali di un aereo nell'aria, sollevando tutto lo scafo per azzerare l'attrito delle onde!",
+        fact: "Questo spettacolare volo si chiama 'foiling': le barche sfiorano i 50 nodi di velocità, sembrando missili argentati che volano sul pelo dell'acqua!"
+      },
+      {
+        sec: 'americas_cup',
+        secTitle: "America's Cup",
+        statement: "Nelle moderne barche dell'America's Cup, lo scafo nasconde un motore a scoppio con la benzina che si accende di nascosto per superare gli avversari!",
+        isTrue: false,
+        explanation: "Falso come una banconota di cartone! Le barche dell'America's Cup non hanno alcun motore: sono spinte solo e unicamente dalla forza del vento sulle vele e dall'abilità dei marinai!",
+        fact: "La vela è uno sport 100% ecologico: zero emissioni, zero rumore di motori e solo pura energia naturale del vento!"
+      },
+
+      // SEZIONE 2: REGOLAMENTO REGATA A VENTAGLIO (2 DOMANDE)
+      {
+        sec: 'regolamento',
+        secTitle: "Regole Regata a Ventaglio",
+        statement: "Secondo la Regola 1 del gioco, ogni fantastico team deve essere formato da 3 o 5 amici, scegliendo insieme un nome buffo e disegnando un logo unico!",
+        isTrue: true,
+        explanation: "Proprio così! La Regola 1 dice: 'Crea il tuo team fantastico! Forma una squadra di 3 o 5 amici, scegliete un nome buffo e disegnate un logo unico' per la vostra barca!",
+        fact: "Nello sport della vela ogni equipaggio ha una divisa, uno stemma e un nome che esprime l'unione e l'allegria di tutto il gruppo!"
+      },
+      {
+        sec: 'regolamento',
+        secTitle: "Regole Regata a Ventaglio",
+        statement: "Alla partenza (Regola 2), ogni concorrente può partire quando preferisce e può invadere i canali d'acqua dei compagni per speronare le loro barchette!",
+        isTrue: false,
+        explanation: "Falsissimo! La Regola 2 stabilisce: 'Pronti, attenti... fischio! Si parte tutti insieme al segnale del fischietto, correndo dritti nel proprio canale d'acqua' senza toccare gli altri!",
+        fact: "Anche nelle vere regate la linea di partenza è rigorosa: chi scatta prima del fischio riceve una penalità dai giudici!"
+      },
+
+      // SEZIONE 3: ELEMENTI DELLA BARCA (2 DOMANDE)
+      {
+        sec: 'elementi_barca',
+        secTitle: "Elementi della Barca",
+        statement: "La PRUA è la parte anteriore (il 'muso' davanti) della barca, la prima che solca le onde e fende l'acqua come una lama!",
+        isTrue: true,
+        explanation: "Esatto! La prua sta sempre davanti e apre la rotta. La parte posteriore che sta dietro si chiama invece 'poppa'!",
+        fact: "Nelle antiche navi in legno, sulla punta della prua veniva montata una scultura di buon auspicio chiamata 'polena'!"
+      },
+      {
+        sec: 'elementi_barca',
+        secTitle: "Elementi della Barca",
+        statement: "L'ALBERO maestro della barca a vela è un grande palo che serve per far maturare mele e banane fresche per la merenda dei marinai!",
+        isTrue: false,
+        explanation: "Haha, che buffa idea! L'albero è il robusto palo verticale che sostiene le vele per catturare il vento e spingere la barca, non fa la frutta!",
+        fact: "Nelle barche da corsa moderne l'albero è in fibra di carbonio: leggero come una piuma ma resistente come l'acciaio!"
+      },
+
+      // SEZIONE 4: TIPI DI BARCHE (2 DOMANDE)
+      {
+        sec: 'tipi_barche',
+        secTitle: "Tipi di Barche",
+        statement: "Il CATAMARANO è un'imbarcazione a due scafi paralleli uniti tra loro (come due pattini gemelli), mentre la barca MONOCHIGLIA ha un unico scafo centrale!",
+        isTrue: true,
+        explanation: "Proprio così! Il catamarano ha due scafi gemelli affiancati e uniti da un ponte o da una rete: per questo è larghissimo, molto stabile e non rolla!",
+        fact: "La parola 'catamarano' deriva da una lingua antica dell'India del Sud (tamil) e significa letteralmente 'legni legati insieme'!"
+      },
+      {
+        sec: 'tipi_barche',
+        secTitle: "Tipi di Barche",
+        statement: "Una ZATTERA è una nave da crociera di lusso a tre piani, dotata di cabine con letti a castello, un garage per le automobili e una piscina olimpionica riscaldata!",
+        isTrue: false,
+        explanation: "Falsissimo, che pasticcio! La zattera è la forma più semplice e antica di imbarcazione: è una piattaforma galleggiante piatta, senza cabine chiuse né garage, formata da tronchi o tubi legati insieme!",
+        fact: "Nel 1947 il famoso esploratore Thor Heyerdahl attraversò 8.000 km di Oceano Pacifico su una zattera di tronchi di balsa chiamata 'Kon-Tiki'!"
+      }
+    ];
+
+    let currentSection = 'all';
+    let questions = [];
+    let currentIdx = 0;
+    let score = 0;
+    let soundEnabled = true;
+    let audioCtx = null;
+    let hasAnsweredCurrent = false;
+
+    function selectSection(secId) {
+      currentSection = secId;
+      document.querySelectorAll('.sec-card-btn').forEach(btn => btn.classList.remove('selected'));
+      const activeBtn = document.getElementById('sec-' + secId);
+      if (activeBtn) activeBtn.classList.add('selected');
+    }
+
+    function initAudio() {
+      if (!audioCtx) {
+        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      }
+      if (audioCtx.state === 'suspended') {
+        audioCtx.resume();
+      }
+    }
+
+    function toggleSound() {
+      soundEnabled = !soundEnabled;
+      document.getElementById('soundIcon').textContent = soundEnabled ? '🔊' : '🔇';
+    }
+
+    function playTone(freq, duration, type='sine') {
+      if (!soundEnabled) return;
+      try {
+        initAudio();
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.type = type;
+        osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+        gain.gain.setValueAtTime(0.2, audioCtx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + duration);
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+        osc.start();
+        osc.stop(audioCtx.currentTime + duration);
+      } catch (e) {}
+    }
+
+    function playCorrectSound() {
+      if (!soundEnabled) return;
+      playTone(523.25, 0.15, 'triangle');
+      setTimeout(() => playTone(659.25, 0.15, 'triangle'), 80);
+      setTimeout(() => playTone(783.99, 0.2, 'triangle'), 160);
+      setTimeout(() => playTone(1046.50, 0.3, 'triangle'), 240);
+    }
+
+    function playWrongSound() {
+      if (!soundEnabled) return;
+      playTone(320, 0.25, 'sine');
+      setTimeout(() => playTone(240, 0.3, 'sine'), 100);
+    }
+
+    function playVictorySound() {
+      if (!soundEnabled) return;
+      [523.25, 659.25, 783.99, 1046.50, 1318.5].forEach((f, i) => {
+        setTimeout(() => playTone(f, 0.35, 'triangle'), i * 110);
+      });
+    }
+
+    function openRulesModal() {
+      document.getElementById('rulesModal').style.display = 'flex';
+    }
+
+    function closeRulesModal() {
+      document.getElementById('rulesModal').style.display = 'none';
+    }
+
+    function speakCurrentStatement() {
+      if ('speechSynthesis' in window) {
+        window.speechSynthesis.cancel();
+        const q = questions[currentIdx];
+        const msg = new SpeechSynthesisUtterance(q.statement + ". Secondo te, questo enunciato è Vero o Falso?");
+        msg.lang = 'it-IT';
+        msg.rate = 0.95;
+        window.speechSynthesis.speak(msg);
+      }
+    }
+
+    function showScreen(screenId) {
+      document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+      document.getElementById(screenId).classList.add('active');
+    }
+
+    function startGame() {
+      initAudio();
+      const input = document.getElementById('boatNameInput');
+      const bName = (input && input.value.trim()) ? input.value.trim() : 'Luna Rossa';
+      const diplomaEl = document.getElementById('diplomaBoat');
+      if (diplomaEl) diplomaEl.textContent = bName;
+
+      if (currentSection === 'all') {
+        questions = [...ALL_QUESTIONS];
+      } else {
+        questions = ALL_QUESTIONS.filter(q => q.sec === currentSection);
+      }
+
+      currentIdx = 0;
+      score = 0;
+      document.getElementById('regattaTrack').style.display = 'block';
+      updateTrackVisuals();
+      loadQuestion();
+      showScreen('questionScreen');
+    }
+
+    function loadQuestion() {
+      hasAnsweredCurrent = false;
+      const q = questions[currentIdx];
+      document.getElementById('questionCounter').textContent = 'Sfida ' + (currentIdx + 1) + ' di ' + questions.length;
+      document.getElementById('sectionBadge').textContent = q.secTitle;
+      document.getElementById('trackSectionTitle').textContent = q.secTitle.toUpperCase();
+      document.getElementById('questionText').textContent = '"' + q.statement + '"';
+
+      const btnVero = document.getElementById('btnVero');
+      const btnFalso = document.getElementById('btnFalso');
+      btnVero.className = 'vf-btn vf-btn-vero';
+      btnFalso.className = 'vf-btn vf-btn-falso';
+      btnVero.disabled = false;
+      btnFalso.disabled = false;
+
+      const fb = document.getElementById('feedbackBox');
+      fb.className = 'feedback-box';
+      fb.style.display = 'none';
+    }
+
+    function selectAnswer(userChoice) {
+      if (hasAnsweredCurrent) return;
+      hasAnsweredCurrent = true;
+
+      const q = questions[currentIdx];
+      const isCorrect = userChoice === q.isTrue;
+      const btnVero = document.getElementById('btnVero');
+      const btnFalso = document.getElementById('btnFalso');
+      btnVero.disabled = true;
+      btnFalso.disabled = true;
+
+      if (isCorrect) {
+        score++;
+        playCorrectSound();
+        if (userChoice === true) btnVero.classList.add('correct');
+        else btnFalso.classList.add('correct');
+      } else {
+        playWrongSound();
+        if (userChoice === true) btnVero.classList.add('wrong');
+        else btnFalso.classList.add('wrong');
+      }
+
+      updateTrackVisuals();
+
+      const fb = document.getElementById('feedbackBox');
+      const fbTitle = document.getElementById('feedbackTitle');
+      const fbExpl = document.getElementById('feedbackExplanation');
+      const fbFact = document.getElementById('feedbackFact');
+
+      if (isCorrect) {
+        fb.className = 'feedback-box feedback-correct';
+        fbTitle.textContent = '🎉 Risposta Esatta! (+10 Nodi)';
+      } else {
+        fb.className = 'feedback-box feedback-wrong';
+        fbTitle.textContent = '🌊 Ops! Scopriamo la verità:';
+      }
+
+      fbExpl.textContent = q.explanation;
+      fbFact.textContent = q.fact;
+      fb.style.display = 'block';
+    }
+
+    function updateTrackVisuals() {
+      const total = questions.length || 1;
+      const speed = total <= 2 ? score * 25 : Math.round((score / total) * 52);
+      document.getElementById('speedDisplay').textContent = speed;
+
+      const progressPercent = Math.min(95, Math.max(6, (currentIdx / total) * 88 + 6));
+      document.getElementById('trackProgress').style.width = progressPercent + '%';
+      document.getElementById('boatMarker').style.left = progressPercent + '%';
+    }
+
+    function nextQuestion() {
+      if (currentIdx + 1 < questions.length) {
+        currentIdx++;
+        updateTrackVisuals();
+        loadQuestion();
+      } else {
+        finishGame();
+      }
+    }
+
+    function finishGame() {
+      playVictorySound();
+      document.getElementById('regattaTrack').style.display = 'none';
+
+      const total = questions.length;
+      const speed = total <= 2 ? score * 25 : Math.round((score / total) * 52);
+      document.getElementById('finalSpeed').textContent = speed;
+      document.getElementById('finalScoreRatio').textContent = score + ' su ' + total + ' risposte corrette (' + Math.round((score/total)*100) + '%)';
+
+      showScreen('finishScreen');
+    }
+
+    function resetGame() {
+      document.getElementById('regattaTrack').style.display = 'none';
+      showScreen('startScreen');
+    }
+  </script>
+</body>
+</html>
